@@ -3,7 +3,7 @@ import '../models/product.dart';
 import '../services/api_service.dart';
 
 class ProductProvider extends ChangeNotifier {
-  final int _limit = 8;
+  final int _limit = 10;
   int _page = 0;
   bool _isLoading = false;
   bool _hasMore = true;

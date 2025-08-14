@@ -67,15 +67,6 @@ class CartProvider with ChangeNotifier {
     // Show system notification
     NotificationService.showCartNotification(title);
 
-    // Show in-app banner
-    // showSimpleNotification(
-    //   Text("$title added to your cart"),
-    //   leading: Image.network(image, width: 40, height: 40, fit: BoxFit.cover),
-    //   background: Colors.green,
-    //   autoDismiss: true,
-    //   duration: const Duration(seconds: 3),
-    //   slideDismissDirection: DismissDirection.up,
-    // );
 
     notifyListeners();
   }

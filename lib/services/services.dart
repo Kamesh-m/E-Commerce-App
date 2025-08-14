@@ -3,7 +3,7 @@ import 'package:timezone/data/latest.dart' as tz;
 
 class NotificationService {
   static final FlutterLocalNotificationsPlugin _notifications =
-  FlutterLocalNotificationsPlugin();
+      FlutterLocalNotificationsPlugin();
   static Function()? _cartTapCallback;
 
   static Future<void> init() async {
@@ -27,7 +27,12 @@ class NotificationService {
     _cartTapCallback = callback;
   }
 
-  static Future<void> showCartNotification(String productName) async {
+  static Future<void> showCartNotification(
+    String productName, {
+    int delaySeconds = 4,
+  }) async {
+    await Future.delayed(Duration(seconds: delaySeconds));
+
     const androidDetails = AndroidNotificationDetails(
       'cart_channel_id',
       'Cart Notifications',
@@ -47,3 +52,5 @@ class NotificationService {
     );
   }
 }
+
+
