@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../provider/cart_provider.dart';
 import '../provider/product_provider.dart';
+import '../services/services.dart';
 
 class ProductListScreen extends StatefulWidget {
   const ProductListScreen({super.key});
@@ -68,6 +69,8 @@ class _ProductListScreenState extends State<ProductListScreen> {
                               product.price,
                               product.image,
                             );
+                            // Provider.of<CartProvider>(context, listen: false).addItem(Product);
+
                           },
                         ),
                       ),

@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/cart_item.dart';
+import '../services/services.dart';
 
 class CartProvider with ChangeNotifier {
   Map<String, CartItem> _items = {};
@@ -11,7 +13,7 @@ class CartProvider with ChangeNotifier {
   double get totalAmount {
     return _items.values.fold(
       0.0,
-      (sum, item) => sum + (item.price * item.quantity),
+          (sum, item) => sum + (item.price * item.quantity),
     );
   }
 
@@ -28,9 +30,9 @@ class CartProvider with ChangeNotifier {
     if (!prefs.containsKey('cart')) return;
 
     final extractedData =
-        jsonDecode(prefs.getString('cart')!) as Map<String, dynamic>;
+    jsonDecode(prefs.getString('cart')!) as Map<String, dynamic>;
     _items = extractedData.map(
-      (key, value) => MapEntry(key, CartItem.fromMap(value)),
+          (key, value) => MapEntry(key, CartItem.fromMap(value)),
     );
     notifyListeners();
   }
@@ -39,7 +41,7 @@ class CartProvider with ChangeNotifier {
     if (_items.containsKey(productId)) {
       _items.update(
         productId,
-        (existing) => CartItem(
+            (existing) => CartItem(
           id: existing.id,
           title: existing.title,
           price: existing.price,
@@ -50,7 +52,7 @@ class CartProvider with ChangeNotifier {
     } else {
       _items.putIfAbsent(
         productId,
-        () => CartItem(
+            () => CartItem(
           id: DateTime.now().toString(),
           title: title,
           price: price,
@@ -59,7 +61,22 @@ class CartProvider with ChangeNotifier {
         ),
       );
     }
+
     _saveCartToPrefs();
+
+    // Show system notification
+    NotificationService.showCartNotification(title);
+
+    // Show in-app banner
+    // showSimpleNotification(
+    //   Text("$title added to your cart"),
+    //   leading: Image.network(image, width: 40, height: 40, fit: BoxFit.cover),
+    //   background: Colors.green,
+    //   autoDismiss: true,
+    //   duration: const Duration(seconds: 3),
+    //   slideDismissDirection: DismissDirection.up,
+    // );
+
     notifyListeners();
   }
 

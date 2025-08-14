@@ -32,53 +32,55 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("E-Commerce App"),
-        actions: [
-          // Cart Icon with Live Count
-          // Selector<CartProvider, int>(
-          //   selector: (_, cart) => cart.items.length,
-          //   builder: (_, count, __) {
-          //     return Stack(
-          //       alignment: Alignment.center,
-          //       children: [
-          //         IconButton(
-          //           icon: const Icon(Icons.shopping_cart),
-          //           onPressed: () {
-          //             setState(() {
-          //               _selectedIndex = 1; // Go to cart screen
-          //             });
-          //           },
-          //         ),
-          //         if (count > 0)
-          //           Positioned(
-          //             right: 6,
-          //             top: 6,
-          //             child: Container(
-          //               padding: const EdgeInsets.all(2),
-          //               decoration: BoxDecoration(
-          //                 color: Colors.red,
-          //                 borderRadius: BorderRadius.circular(10),
-          //               ),
-          //               constraints: const BoxConstraints(
-          //                 minWidth: 18,
-          //                 minHeight: 18,
-          //               ),
-          //               child: Text(
-          //                 count.toString(),
-          //                 style: const TextStyle(
-          //                   color: Colors.white,
-          //                   fontSize: 12,
-          //                 ),
-          //                 textAlign: TextAlign.center,
-          //               ),
-          //             ),
-          //           ),
-          //       ],
-          //     );
-          //   },
-          // ),
-        ],
+        // actions: [
+        //   // Cart icon in AppBar with badge
+        //   Stack(
+        //     clipBehavior: Clip.none,
+        //     children: [
+        //       IconButton(
+        //         icon: const Icon(Icons.shopping_cart),
+        //         onPressed: () {
+        //           setState(() {
+        //             _selectedIndex = 1; // Navigate to Cart tab
+        //           });
+        //         },
+        //       ),
+        //       Selector<CartProvider, int>(
+        //         selector: (_, cart) => cart.items.length,
+        //         builder: (_, count, __) {
+        //           if (count == 0) return const SizedBox();
+        //           return Positioned(
+        //             right: 4,
+        //             top: 4,
+        //             child: Container(
+        //               padding: const EdgeInsets.all(2),
+        //               decoration: BoxDecoration(
+        //                 color: Colors.red,
+        //                 borderRadius: BorderRadius.circular(10),
+        //               ),
+        //               constraints: const BoxConstraints(
+        //                 minWidth: 18,
+        //                 minHeight: 18,
+        //               ),
+        //               child: Text(
+        //                 count.toString(),
+        //                 style: const TextStyle(
+        //                   color: Colors.white,
+        //                   fontSize: 12,
+        //                 ),
+        //                 textAlign: TextAlign.center,
+        //               ),
+        //             ),
+        //           );
+        //         },
+        //       ),
+        //     ],
+        //   ),
+        // ],
       ),
+
       body: _screens[_selectedIndex],
+
       bottomNavigationBar: BottomNavigationBar(
         items: [
           const BottomNavigationBarItem(
@@ -123,7 +125,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             label: 'Cart',
           ),
-
           const BottomNavigationBarItem(
             icon: Icon(Icons.list_alt),
             label: 'Orders',
